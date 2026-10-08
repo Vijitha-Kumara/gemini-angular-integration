@@ -1,0 +1,32 @@
+.skeleton-loader {
+  display: block;
+  background: linear-gradient(
+    90deg,
+    #ececec 25%,
+    #f7f7f7 37%,
+    #ececec 63%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.4s ease-in-out infinite;
+}
+
+@media (prefers-color-scheme: dark) {
+  .skeleton-loader {
+    background: linear-gradient(
+      90deg,
+      #2f2f2f 25%,
+      #3b3b3b 37%,
+      #2f2f2f 63%
+    );
+    background-size: 200% 100%;
+  }
+}
+
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
