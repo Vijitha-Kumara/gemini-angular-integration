@@ -4,30 +4,44 @@
   </div>
 
   <div class="chat-body">
-    <div class="message user">
-      Hello
-    </div>
-
-    <div class="message ai">
-      Hello! How can I help you?
-    </div>
-
-    <div class="message loading">
-      <app-skeleton width="32px" height="32px" radius="50%"></app-skeleton>
-      <div class="loading-lines">
-        <app-skeleton width="92%" height="14px"></app-skeleton>
-        <app-skeleton width="76%" height="14px"></app-skeleton>
-        <app-skeleton width="46%" height="14px"></app-skeleton>
+    @for (message of messages; track $index) {
+      <div class="message" [class.user]="message.role === 'user'" [class.ai]="message.role === 'ai'">
+        {{ message.text }}
       </div>
-    </div>
+    }
+
+    @if (isLoading) {
+      <div class="message loading">
+        <app-skeleton width="32px" height="32px" radius="50%"></app-skeleton>
+        <div class="loading-lines">
+          <app-skeleton width="92%" height="14px"></app-skeleton>
+          <app-skeleton width="76%" height="14px"></app-skeleton>
+          <app-skeleton width="46%" height="14px"></app-skeleton>
+        </div>
+      </div>
+    }
+
+    @if (errorMessage) {
+      <div class="message error">
+        {{ errorMessage }}
+      </div>
+    }
   </div>
+
   <div class="chat-input">
     <input
+      #messageInput
       type="text"
       placeholder="Ask anything..."
+      [disabled]="isLoading"
+      (keyup.enter)="sendMessage(messageInput.value); messageInput.value = ''"
     />
 
-    <button>
+    <button
+      type="button"
+      [disabled]="isLoading"
+      (click)="sendMessage(messageInput.value); messageInput.value = ''"
+    >
       Send
     </button>
   </div>

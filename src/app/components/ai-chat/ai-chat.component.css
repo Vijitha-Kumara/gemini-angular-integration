@@ -47,6 +47,11 @@
   margin-right: auto;
 }
 
+.error {
+  margin-right: auto;
+  color: #b42318;
+}
+
 .loading {
   display: flex;
   width: 100%;
@@ -85,6 +90,11 @@
   border-color: #10a37f;
 }
 
+.chat-input input:disabled {
+  background: #f7f7f8;
+  cursor: not-allowed;
+}
+
 .chat-input button {
   padding: 0 18px;
   border: none;
@@ -94,6 +104,11 @@
   font: inherit;
   font-weight: 600;
   cursor: pointer;
+}
+
+.chat-input button:disabled {
+  background: #b7b7b7;
+  cursor: not-allowed;
 }
 
 @media (max-width: 560px) {
