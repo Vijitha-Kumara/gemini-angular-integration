@@ -1,0 +1,34 @@
+<div class="chat-container">
+  <div class="chat-header">
+    <h1>AI Assistant</h1>
+  </div>
+
+  <div class="chat-body">
+    <div class="message user">
+      Hello
+    </div>
+
+    <div class="message ai">
+      Hello! How can I help you?
+    </div>
+
+    <div class="message loading">
+      <app-skeleton width="32px" height="32px" radius="50%"></app-skeleton>
+      <div class="loading-lines">
+        <app-skeleton width="92%" height="14px"></app-skeleton>
+        <app-skeleton width="76%" height="14px"></app-skeleton>
+        <app-skeleton width="46%" height="14px"></app-skeleton>
+      </div>
+    </div>
+  </div>
+  <div class="chat-input">
+    <input
+      type="text"
+      placeholder="Ask anything..."
+    />
+
+    <button>
+      Send
+    </button>
+  </div>
+</div>
