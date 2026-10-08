@@ -1,59 +1,78 @@
-# AngularGeminiIntegration
+# Angular Gemini Integration
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.5.
+Simple Angular chat UI that connects to the Gemini API from the frontend for testing.
 
-## Development server
+> Important: this project currently uses the Gemini API key in browser code for testing only. Do not use this approach for production. In production, call Gemini from a backend so the API key stays private.
 
-To start a local development server, run:
+## Requirements
 
-```bash
-ng serve
-```
+- Node.js
+- npm
+- Angular CLI, or use the local CLI through `npm run`
+- Gemini API key from Google AI Studio
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Setup
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+1. Install dependencies:
 
 ```bash
-ng generate --help
+npm install
 ```
 
-## Building
+2. Create a `.env` file in the project root:
 
-To build the project run:
+```env
+NG_APP_GEMINI_API_KEY=your_gemini_api_key_here
+```
+
+The `NG_APP_` prefix is required because this project uses `@ngx-env/builder`, which only exposes frontend environment variables with that prefix by default.
+
+3. Start the Angular development server:
 
 ```bash
-ng build
+npm.cmd start
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
 
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
 
 ```bash
-ng test
+npm start
+
+4. Open the app:
+
+```text
+http://localhost:4200
 ```
 
-## Running end-to-end tests
+5. Type a message in the chat input and click `Send`.
 
-For end-to-end (e2e) testing, run:
+## Important Files
 
-```bash
-ng e2e
+- `src/app/components/ai-chat/ai-chat.component.html` - chat UI template
+- `src/app/components/ai-chat/ai-chat.component.ts` - chat message state and send handler
+- `src/app/components/ai-chat/ai-chat.component.css` - chat UI styling
+- `src/app/components/services/gemini.service.ts` - Gemini API call logic
+- `src/env.d.ts` - TypeScript typings for `import.meta.env`
+- `.env` - local API key file, ignored by git
+
+## Gemini Model
+
+The model is configured in:
+
+```text
+src/app/components/services/gemini.service.ts
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Current model:
 
-## Additional Resources
+```ts
+gemini-3.5-flash-lite
+```
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+If that model gives errors, try a different available Gemini model, for example:
+
+```ts
+gemini-2.0-flash
+gemini-2.0-flash-lite
+```
+
